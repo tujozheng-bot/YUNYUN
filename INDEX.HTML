@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIS YunTech | Association of International Students</title>
+    <meta name="description" content="Bridging Cultures. Empowering Global Students. The official cultural facilitator and event organizer for international students under YunTech's Office of International Affairs.">
+    
+    <!-- Google Fonts: Noto Sans (Body) & Poppins (Headings) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* ==============================
+           CSS VARIABLES & THEME
+           ============================== */
+        :root {
+            /* YunTech Brand Colors */
+            --brand-navy: #0B2C5E;
+            --brand-blue-accent: #1E5AA8;
+            --brand-green: #2E7D32;
+            --brand-green-accent: #66BB6A;
+            
+            /* UI Colors */
+            --bg-white: #FFFFFF;
+            --bg-light: #F7F9FA;
+            --text-main: #333333;
+            --text-muted: #666666;
+            
+            /* Typography */
+            --font-heading: 'Poppins', sans-serif;
+            --font-body: 'Noto Sans', sans-serif;
+            
+            /* Layout */
+            --nav-height: 80px;
+            --border-radius: 8px;
+            --shadow-sm: 0 4px 6px rgba(11, 44, 94, 0.05);
+            --shadow-md: 0 10px 30px rgba(11, 44, 94, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        /* ==============================
+           RESET & GLOBAL STYLES
+           ============================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: var(--nav-height);
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--text-main);
+            background-color: var(--bg-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            color: var(--brand-navy);
+            line-height: 1.3;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .section-padding {
+            padding: 100px 0;
+        }
+
+        .bg-light {
+            background-color: var(--bg-light);
+        }
+
+        /* Typography Utilities */
+        .text-center { text-align: center; }
+        .section-title { font-size: 2.5rem; margin-bottom: 1rem; }
+        .section-subtitle { font-size: 1.125rem; color: var(--text-muted); max-width: 700px; margin: 0 auto 3rem auto; }
+        .highlight-green { color: var(--brand-green); }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 28px;
+            border-radius: 6px;
+            font-family: var(--font-heading);
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .btn-primary {
+            background-color: var(--brand-navy);
+            color: var(--bg-white);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--brand-blue-accent);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--bg-white);
+            border-color: var(--bg-white);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--bg-white);
+            color: var(--brand-navy);
+            transform: translateY(-2px);
+        }
+
+        .btn-accent {
+            background-color: var(--brand-green);
+            color: var(--bg-white);
+        }
+
+        .btn-accent:hover {
+            background-color: var(--brand-green-accent);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ==============================
+           NAVIGATION
+           ============================== */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--nav-height);
+            background-color: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        .nav-container {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-family: var(--font-heading);
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--brand-navy);
+        }
+
+        .logo img {
+            height: 40px;
+            width: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            font-size: 0.95rem;
+            color: var(--text-main);
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--brand-green);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover { color: var(--brand-navy); }
+        .nav-links a:hover::after { width: 100%; }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .mobile-menu-btn svg {
+            width: 28px;
+            height: 28px;
+            fill: var(--brand-navy);
+        }
+
+        /* ==============================
+           HERO SECTION
+           ============================== */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(135deg, var(--brand-navy) 0%, var(--brand-blue-accent) 100%);
+            color: var(--bg-white);
+            padding-top: var(--nav-height);
+            overflow: hidden;
+        }
+
+        /* Subtle globe/map motif background pattern */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0.05;
+            background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0);
+            background-size: 32px 32px;
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            color: var(--bg-white);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero .tagline {
+            font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+            font-weight: 500;
+            color: var(--brand-green-accent);
+            margin-bottom: 1.5rem;
+            font-family: var(--font-heading);
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* ==============================
+           ABOUT US
+           ============================== */
+        .history-text {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 4rem auto;
+            font-size: 1.1rem;
+            color: var(--text-muted);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            margin-bottom: 4rem;
+        }
+
+        @media (min-width: 992px) {
+            .about-grid { grid-template-columns: 1fr 1.5fr; }
+        }
+
+        .vision-card {
+            background-color: var(--brand-navy);
+            color: var(--bg-white);
+            padding: 40px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-md);
+        }
+
+        .vision-card h3 { color: var(--bg-white); margin-bottom: 1rem; display: flex; align-items: center; gap: 12px; }
+        .vision-card svg { width: 32px; height: 32px; fill: var(--brand-green-accent); }
+        .vision-card p { font-size: 1.05rem; opacity: 0.9; line-height: 1.8; }
+
+        .mission-area h3 {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 1.5rem;
+        }
+        .mission-area h3 svg { width: 32px; height: 32px; fill: var(--brand-green); }
+
+        .mission-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        @media (min-width: 600px) {
+            .mission-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        .mission-card {
+            background: var(--bg-light);
+            padding: 24px;
+            border-radius: var(--border-radius);
+            border-top: 4px solid var(--brand-green);
+            transition: var(--transition);
+        }
+
+        .mission-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .mission-card h4 { margin-bottom: 0.5rem; font-size: 1.1rem; }
+        .mission-card p { font-size: 0.95rem; color: var(--text-muted); }
+
+        .core-values {
+            text-align: center;
+            padding: 30px;
+            background: rgba(46, 125, 50, 0.05);
+            border-radius: var(--border-radius);
+            border: 1px solid rgba(46, 125, 50, 0.1);
+        }
+        
+        .core-values p { color: var(--brand-navy); font-weight: 500; }
+
+        /* ==============================
+           EVENTS GALLERY
+           ============================== */
+        .events-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        @media (min-width: 768px) {
+            .events-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (min-width: 1024px) {
+            .events-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        .event-card {
+            background: var(--bg-white);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .event-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .event-img-wrap {
+            position: relative;
+            height: 220px;
+            background-color: #E2E8F0;
+            overflow: hidden;
+        }
+
+        .event-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .event-card:hover .event-img-wrap img {
+            transform: scale(1.05);
+        }
+
+        .event-content {
+            padding: 24px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .event-date {
+            font-size: 0.85rem;
+            color: var(--brand-green);
+            font-weight: 600;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .event-card h3 {
+            margin-bottom: 12px;
+            font-size: 1.25rem;
+        }
+
+        .event-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .event-card .btn {
+            width: 100%;
+            padding: 10px;
+            font-size: 0.95rem;
+        }
+
+        /* ==============================
+           MEMBERSHIP SECTION
+           ============================== */
+        .membership-wrapper {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .membership-card {
+            background: linear-gradient(135deg, var(--brand-navy) 0%, var(--brand-blue-accent) 100%);
+            color: var(--bg-white);
+            border-radius: 16px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .membership-card::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 150px;
+            height: 150px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 50%;
+        }
+
+        .membership-card h3 {
+            color: var(--bg-white);
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .membership-price {
+            font-size: 1.25rem;
+            color: var(--brand-green-accent);
+            font-family: var(--font-heading);
+            font-weight: 600;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .membership-benefits {
+            text-align: left;
+            margin: 0 auto 30px auto;
+            max-width: 600px;
+        }
+
+        .membership-benefits li {
+            margin-bottom: 16px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 1.05rem;
+        }
+
+        .membership-benefits li svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--brand-green-accent);
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .membership-note {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        /* ==============================
+           FLAGSHIP EVENT
+           ============================== */
+        .flagship-wrapper {
+            background-color: var(--bg-white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-sm);
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            border-left: 6px solid var(--brand-green);
+        }
+
+        @media (min-width: 768px) {
+            .flagship-wrapper {
+                flex-direction: row;
+                align-items: center;
+                padding: 60px;
+            }
+        }
+
+        .flagship-content { flex: 1; }
+        
+        .flagship-tag {
+            display: inline-block;
+            background: rgba(46, 125, 50, 0.1);
+            color: var(--brand-green);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .flagship-icon {
+            flex: 0 0 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .flagship-icon svg {
+            width: 100%;
+            height: auto;
+            max-width: 150px;
+            fill: var(--brand-navy);
+            opacity: 0.1;
+        }
+
+        /* ==============================
+           CONTACT US
+           ============================== */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            background: var(--bg-white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-sm);
+            overflow: hidden;
+        }
+
+        @media (min-width: 768px) {
+            .contact-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        .contact-info {
+            padding: 40px;
+            background: var(--brand-navy);
+            color: var(--bg-white);
+        }
+
+        .contact-info h3 { color: var(--bg-white); margin-bottom: 24px; }
+
+        .social-links {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+
+        .social-btn {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 20px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 6px;
+            color: var(--bg-white);
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .social-btn:hover { background: var(--brand-green); transform: translateX(5px); }
+        .social-btn svg { width: 24px; height: 24px; fill: currentColor; }
+
+        .address-box {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+        }
+
+        .address-box svg { width: 32px; height: 32px; fill: var(--brand-green-accent); flex-shrink: 0; }
+        .address-box p { opacity: 0.9; font-size: 0.95rem; line-height: 1.6; }
+
+        .map-container {
+            width: 100%;
+            height: 100%;
+            min-height: 300px;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* ==============================
+           FOOTER
+           ============================== */
+        footer {
+            background-color: #051833;
+            color: var(--bg-white);
+            padding: 60px 0 30px 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logos {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .footer-logos img {
+            height: 50px;
+            width: auto;
+            filter: brightness(0) invert(1); /* Makes logos white for dark background */
+            opacity: 0.8;
+            transition: var(--transition);
+        }
+
+        .footer-logos img:hover { opacity: 1; }
+
+        .footer-divider {
+            width: 1px;
+            height: 40px;
+            background-color: rgba(255,255,255,0.2);
+        }
+
+        .footer-bottom {
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.85rem;
+            opacity: 0.7;
+        }
+
+        .footer-bottom p { margin-bottom: 8px; }
+
+        /* ==============================
+           ANIMATIONS & UTILITIES
+           ============================== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Mobile Nav Adjustments */
+        @media (max-width: 768px) {
+            .mobile-menu-btn { display: block; }
+            
+            .nav-links {
+                position: fixed;
+                top: var(--nav-height);
+                left: 100%;
+                width: 100%;
+                height: calc(100vh - var(--nav-height));
+                background-color: var(--bg-white);
+                flex-direction: column;
+                align-items: center;
+                padding-top: 40px;
+                transition: var(--transition);
+                box-shadow: -5px 0 15px rgba(0,0,0,0.05);
+            }
+
+            .nav-links.active { left: 0; }
+            .nav-links a { font-size: 1.25rem; padding: 15px; width: 100%; text-align: center; }
+            .nav-links a::after { display: none; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <header id="navbar">
+        <div class="container nav-container">
+            <a href="#home" class="logo">
+                <!-- TODO: share.google links are not direct image files. If the logo doesn't render, re-host this image on Imgur, GitHub raw, or a Google Drive file set to "Anyone with the link" using the format https://drive.google.com/uc?export=view&id=FILE_ID, then paste that URL here instead. -->
+                <img src="https://www.image2url.com/r2/default/images/1782913702721-295b9301-5a33-461a-b8e6-38dd8e05da81.png" 
+                     alt="AIS Logo" 
+                     onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'%230B2C5E\'><path d=\'M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9z\'/></svg>'">
+                <span>AIS YunTech</span>
+            </a>
+            
+            <nav class="nav-links" id="navLinks">
+                <a href="#home">Home</a>
+                <a href="#about">About Us</a>
+                <a href="#events">Events</a>
+                <a href="#membership">Membership</a>
+                <a href="#contact">Contact Us</a>
+            </nav>
+
+            <button class="mobile-menu-btn" id="mobileBtn" aria-label="Toggle Menu">
+                <svg viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO SECTION -->
+        <section id="home" class="hero">
+            <div class="container hero-content reveal">
+                <h1>Association of International Students (AIS) <br><span class="highlight-green" style="font-size: 0.8em;">YunTech</span></h1>
+                <p class="tagline">Bridging Cultures. Empowering Global Students.</p>
+                <p>The official cultural facilitator and event organizer for international students under YunTech's Office of International Affairs.</p>
+                <div class="hero-btns">
+                    <a href="#about" class="btn btn-accent">About Us</a>
+                    <a href="#events" class="btn btn-outline">See Our Events</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT US SECTION -->
+        <section id="about" class="section-padding">
+            <div class="container">
+                <div class="text-center reveal">
+                    <h2 class="section-title">Who We Are</h2>
+                    <p class="section-subtitle history-text">
+                        Founded to unite international students at YunTech, AIS serves as the official cultural facilitator and event-organizing arm of the Office of International Affairs (OIA), focused on cultural integration, student wellbeing, and professional development.
+                    </p>
+                </div>
+
+                <div class="about-grid">
+                    <!-- Vision -->
+                    <div class="vision-card reveal">
+                        <h3>
+                            <svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+                            Our Vision
+                        </h3>
+                        <p>To become YunTech's leading global facilitator organization — bridging cultural diversity, developing the professional capacity of international students, and supporting the internationalization goals of the Office of International Affairs through inclusive, agile, and financially sustainable event management.</p>
+                    </div>
+
+                    <!-- Mission -->
+                    <div class="mission-area reveal" style="transition-delay: 0.2s;">
+                        <h3>
+                            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg> <!-- Using a simplified target/bullseye/focus icon conceptually -->
+                            Our Mission
+                        </h3>
+                        <div class="mission-grid">
+                            <div class="mission-card">
+                                <h4>1. Managerial Efficiency</h4>
+                                <p>Implementing a two-tier committee system (Core & Task Force) to separate strategy from execution, optimizing budgets and reducing bureaucracy.</p>
+                            </div>
+                            <div class="mission-card">
+                                <h4>2. Financial Sustainability</h4>
+                                <p>Achieving independence through strategic partnerships, a paid membership scheme, and revenue-generating events.</p>
+                            </div>
+                            <div class="mission-card">
+                                <h4>3. Digital Expansion</h4>
+                                <p>Transforming event publicity into measurable social campaigns that strengthen YunTech's international profile to attract global students.</p>
+                            </div>
+                            <div class="mission-card">
+                                <h4>4. Inclusivity & Leadership</h4>
+                                <p>Designing a volunteer framework allowing students from diverse countries and years to participate and grow into future leaders.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Core Values Note -->
+                <div class="core-values reveal">
+                    <p>AIS values strictly align with YunTech's official core values: <strong>Sincerity, Honor, Perseverance, and Originality</strong>, while actively supporting UN Sustainable Development Goal 17 (Global Partnerships).</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- EVENTS SECTION -->
+        <section id="events" class="section-padding bg-light">
+            <div class="container">
+                <div class="text-center reveal">
+                    <h2 class="section-title">Events Gallery</h2>
+                    <p class="section-subtitle">Discover how we bring the world together right here on the YunTech campus.</p>
+                </div>
+
+                <!-- Events will be injected here by JavaScript -->
+                <div class="events-grid" id="events-grid"></div>
+                
+            </div>
+        </section>
+
+        <!-- MEMBERSHIP SECTION -->
+        <section id="membership" class="section-padding">
+            <div class="container reveal">
+                <div class="membership-wrapper">
+                    <div class="membership-card">
+                        <h3>VIP Semester Membership</h3>
+                        <div class="membership-price">NT$ 300 / semester</div>
+                        
+                        <ul class="membership-benefits">
+                            <li>
+                                <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                                Priority Fast-Pass entry at all AIS events (skip the line)
+                            </li>
+                            <li>
+                                <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                                Priority access to limited consumption items & souvenirs
+                            </li>
+                            <li>
+                                <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                                Exclusive discounts on premium paid events (cultural trips, semester-end parties)
+                            </li>
+                            <li>
+                                <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                                Priority right to rent a tenant/booth at the Cultural Event Exchange Fair to sell items from your home country
+                            </li>
+                        </ul>
+                        
+                        <p class="membership-note">Membership dues support AIS's ability to run larger, higher-quality events for the whole YunTech international community.</p>
+                        
+                        <!-- TODO: Confirm the membership sign-up link is currently active -->
+                        <a href="https://forms.gle/eyr9gSziptxU9fZU8" target="_blank" rel="noopener" class="btn btn-accent">Join as a Member</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FLAGSHIP EVENT SECTION -->
+        <section id="flagship-event" class="section-padding bg-light">
+            <div class="container reveal">
+                <div class="flagship-wrapper">
+                    <div class="flagship-content">
+                        <span class="flagship-tag">Annual Flagship Event</span>
+                        <h2>Cultural Event Exchange Fair</h2>
+                        <br>
+                        <p>Our flagship annual event transforms YunTech's public spaces into a vibrant global exhibition hall. It is an interactive cultural exhibition where local and international students proudly showcase their countries through authentic food, traditional crafts, and live performances.</p>
+                        <br>
+                        <p>More than just a festival, this fair strengthens grassroots cultural diplomacy, fosters genuine cross-cultural understanding, and empowers our international students economically by allowing them to manage and operate their own cultural booths.</p>
+                    </div>
+                    <div class="flagship-icon">
+                        <!-- Decorative Globe Icon -->
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT US SECTION -->
+        <section id="contact" class="section-padding">
+            <div class="container reveal">
+                <div class="text-center">
+                    <h2 class="section-title">Connect With Us</h2>
+                    <p class="section-subtitle">Follow our social channels to stay updated on upcoming events and opportunities.</p>
+                </div>
+                
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <h3>Our Socials</h3>
+                        <div class="social-links">
+                            <a href="https://www.instagram.com/ais_yuntech" target="_blank" rel="noopener" class="social-btn">
+                                <!-- Instagram Icon -->
+                                <svg viewBox="0 0 24 24"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/></svg>
+                                Instagram (@ais_yuntech)
+                            </a>
+                            <a href="https://www.tiktok.com/@ais_yuntech" target="_blank" rel="noopener" class="social-btn">
+                                <!-- TikTok Icon -->
+                                <svg viewBox="0 0 24 24"><path d="M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 2.78-1.15 5.54-3.33 7.31-1.9 1.53-4.48 2.22-6.9 1.83-2.92-.47-5.5-2.5-6.66-5.26-.9-2.14-.99-4.57-.2-6.79 1.09-3.07 4.14-5.32 7.37-5.59l.06 4.2c-2.02.16-3.86 1.4-4.55 3.28-.62 1.67-.4 3.65.65 5.09 1.05 1.42 2.91 2.11 4.67 1.78 1.95-.36 3.42-2.11 3.55-4.1.13-2.28.06-4.57.08-6.85.03-4.04.02-8.08.01-12.12z"/></svg>
+                                TikTok (@ais_yuntech)
+                            </a>
+                            <a href="https://www.linkedin.com/in/association-of-interntional-student-yuntech-ais" target="_blank" rel="noopener" class="social-btn">
+                                <!-- LinkedIn Icon -->
+                                <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.16-3.8c-1.1 0-1.8.6-2.12 1.2v-1h-2.9c.04.8 0 8.9 0 8.9h2.9v-4.9c0-.26.02-.52.1-.7.22-.52.7-1.06 1.51-1.06 1.07 0 1.5.8 1.5 1.98v4.68h2.97M6.65 18.5h2.9V9h-2.9v9.5M8.1 7.42c.98 0 1.58-.65 1.58-1.46-.02-.83-.6-1.46-1.56-1.46-.96 0-1.58.63-1.58 1.46 0 .81.6 1.46 1.54 1.46h.02z"/></svg>
+                                LinkedIn
+                            </a>
+                        </div>
+                        
+                        <div class="address-box">
+                            <!-- Location Pin -->
+                            <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                            <div>
+                                <h4 style="color: white; margin-bottom: 4px;">YunTech Campus</h4>
+                                <p>No. 123, University Road, Section 3<br>Douliu City, Yunlin County 64002<br>Taiwan (R.O.C.)</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="map-container">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3644.200788647712!2d120.53151817594951!3d23.69376699474776!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x346ec800a7526bfd%3A0xa6cd4c055627251!2sNational%20Yunlin%20University%20of%20Science%20and%20Technology!5e0!3m2!1sen!2stw!4v1700000000000!5m2!1sen!2stw" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logos">
+                    <!-- TODO: same share.google caveat as above for AIS logo. Re-host if broken. -->
+                    <img src="https://www.image2url.com/r2/default/images/1782913702721-295b9301-5a33-461a-b8e6-38dd8e05da81.png" alt="AIS Logo" onerror="this.style.display='none'">
+                    
+                    <div class="footer-divider"></div>
+                    
+                    <!-- Real YunTech Emblem from Wikimedia -->
+                    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/National_Yunlin_University_of_Science_and_Technology_logo.svg" alt="YunTech Logo">
+                </div>
+                
+                <div style="font-family: var(--font-heading); font-size: 1.2rem; font-weight: 600;">
+                    AIS YunTech
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>Operating under the Office of International Affairs, National Yunlin University of Science and Technology.</p>
+                <p>&copy; 2026 Association of International Students, YunTech. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        /**
+         * =========================================
+         * EVENTS DATA ARRAY
+         * Edit this array to add/remove events.
+         * =========================================
+         */
+        const events = [
+            {
+                name: "Ma Shang Lunar Party",
+                date: "4 March 2026",
+                description: "Celebrate the Year of the Horse with a burst of red and gold! Join us for a festive gathering filled with traditional lucky foods, vibrant dragon dances, and the sharing of red envelopes. Let's welcome prosperity and good fortune together in this joyous Spring Festival celebration.",
+                // TODO: this is a share.google preview link, not a direct image file — likely won't render. Re-host on Imgur/GitHub raw/Drive (uc?export=view&id=FILE_ID) if the image shows broken.
+                coverImage: "https://www.image2url.com/r2/default/images/1782913336672-e6c4b525-6fe8-42d3-9c92-94a5226c7b43.png", 
+                driveLink: "https://drive.google.com/drive/folders/1Epa9ciPFLDILkaanVLXY_-0IQ-mzwVj6?usp=sharing"
+            },
+            {
+                name: "Shake Shake Mango",
+                date: "6 May 2026",
+                description: "Experience a sweet YunTech tradition! Join the mango-picking challenge along Longtan Road. Build your own tools, pluck fresh mangoes straight from the trees, and enjoy a delicious mango feast with friends.",
+                // TODO: same share.google caveat as above — replace with a direct image URL if broken
+                coverImage: "https://www.image2url.com/r2/default/images/1782913631479-3b16df9d-e61d-4f96-af35-d6bfdce7316f.png", 
+                driveLink: "https://drive.google.com/drive/folders/1OB3JeHtV86e2puNrKq7EvQhUHmbbVwQ2?usp=drive_link"
+            },
+            {
+                name: "404 Student Not Found",
+                date: "5 June 2026",
+                description: "Error 404: Students have graduated! Celebrate the end of an era with an unforgettable graduation party. Join the Association of International Students for a night of music, reflection, and celebration before starting your next big adventure.",
+                // TODO: same share.google caveat as above — replace with a direct image URL if broken
+                coverImage: "https://www.image2url.com/r2/default/images/1782913469776-4972b434-28b7-490f-b332-7ffc2c58889f.png", 
+                driveLink: "https://drive.google.com/drive/folders/1DurzA-UT2ymhcwU6Mwxjv3KBIQEqmVK2?usp=sharing"
+            }
+            // TODO: add more events here following the exact same shape
+        ];
+
+        /**
+         * Render Events to DOM
+         */
+        const eventsContainer = document.getElementById('events-grid');
+        
+        // Inline SVG Fallback for broken event images (Neutral brand placeholder)
+        const fallbackImageSVG = `data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='600' viewBox='0 0 800 600'><rect width='800' height='600' fill='%23F7F9FA'/><path d='M400 250c-27.6 0-50 22.4-50 50s22.4 50 50 50 50-22.4 50-50-22.4-50-50-50zm0 80c-16.5 0-30-13.5-30-30s13.5-30 30-30 30 13.5 30 30-13.5 30-30 30z' fill='%230B2C5E' opacity='0.2'/><text x='50%' y='65%' font-family='sans-serif' font-size='18' fill='%230B2C5E' opacity='0.5' text-anchor='middle'>Image Placeholder</text></svg>`;
+
+        if (eventsContainer) {
+            events.forEach((event, index) => {
+                const card = document.createElement('div');
+                card.className = 'event-card reveal';
+                card.style.transitionDelay = `${index * 0.1}s`; // Staggered animation
+                
+                card.innerHTML = `
+                    <div class="event-img-wrap">
+                        <img src="${event.coverImage}" alt="${event.name}" onerror="this.onerror=null; this.src='${fallbackImageSVG}';">
+                    </div>
+                    <div class="event-content">
+                        <div class="event-date">${event.date}</div>
+                        <h3>${event.name}</h3>
+                        <p>${event.description}</p>
+                        <a href="${event.driveLink}" target="_blank" rel="noopener" class="btn btn-outline" style="color: var(--brand-navy); border-color: var(--brand-navy);">
+                            View Photo Album
+                        </a>
+                    </div>
+                `;
+                eventsContainer.appendChild(card);
+            });
+        }
+
+        /**
+         * Mobile Menu Toggle
+         */
+        const mobileBtn = document.getElementById('mobileBtn');
+        const navLinks = document.getElementById('navLinks');
+        
+        mobileBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close menu when clicking a link
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        /**
+         * Scroll Reveal Animation using Intersection Observer
+         */
+        const revealElements = document.querySelectorAll('.reveal');
+        
+        const revealCallback = (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target); // Stop observing once revealed
+                }
+            });
+        };
+
+        const revealOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.15 // Trigger when 15% visible
+        };
+
+        const revealObserver = new IntersectionObserver(revealCallback, revealOptions);
+        
+        revealElements.forEach(el => {
+            revealObserver.observe(el);
+        });
+
+        /**
+         * Navbar Shadow on Scroll
+         */
+        const header = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                header.style.boxShadow = '0 4px 20px rgba(11, 44, 94, 0.1)';
+            } else {
+                header.style.boxShadow = 'var(--shadow-sm)';
+            }
+        });
+
+    </script>
+</body>
+</html>
